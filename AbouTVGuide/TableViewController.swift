@@ -68,15 +68,15 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-        let imagem = NSURL(string: serie.imagemURL)
-        
-        if imagem != nil
-        {
-            let data = NSData(contentsOf: (imagem as URL?)!)
-            
-            if data != nil
-            {
-                cell.imagemSerie.image = UIImage(data: data! as Data)
+        if let imagem = NSURL(string: serie.imagemURL) {
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: imagem as URL)
+                
+                if data != nil {
+                    DispatchQueue.main.async {
+                        cell.imagemSerie.image = UIImage(data: data!)
+                    }
+                }
             }
         }
         
@@ -96,7 +96,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
-            self.seriesFiltradas.series = self.seriesPrincipais.series
+            self.seriesFiltradas.series = []
         }
         
         else {

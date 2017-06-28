@@ -17,8 +17,8 @@
 		D01C4F851EF9F9ED00A193EC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01C4F841EF9F9EC00A193EC /* TableViewCell.swift */; };
 		D01C4F871EFA0A9700A193EC /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01C4F861EFA0A9700A193EC /* Serie.swift */; };
 		D01C4F891EFA11AF00A193EC /* ListaSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01C4F881EFA11AF00A193EC /* ListaSeries.swift */; };
-		D01C4F8D1EFA15D200A193EC /* ImportadorJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01C4F8C1EFA15D100A193EC /* ImportadorJSON.swift */; };
 		D01C4F921EFA19CA00A193EC /* CarregadorJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01C4F911EFA19CA00A193EC /* CarregadorJSON.swift */; };
+		D01D729A1F035DC300655FF7 /* ImportadorJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D72991F035DC300655FF7 /* ImportadorJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +34,8 @@
 		D01C4F841EF9F9EC00A193EC /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		D01C4F861EFA0A9700A193EC /* Serie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
 		D01C4F881EFA11AF00A193EC /* ListaSeries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaSeries.swift; sourceTree = "<group>"; };
-		D01C4F8C1EFA15D100A193EC /* ImportadorJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportadorJSON.swift; path = ../ImportadorJSON.swift; sourceTree = "<group>"; };
 		D01C4F911EFA19CA00A193EC /* CarregadorJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarregadorJSON.swift; sourceTree = "<group>"; };
+		D01D72991F035DC300655FF7 /* ImportadorJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportadorJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 				D01C4F911EFA19CA00A193EC /* CarregadorJSON.swift */,
 				D01C4F861EFA0A9700A193EC /* Serie.swift */,
 				D01C4F881EFA11AF00A193EC /* ListaSeries.swift */,
-				D01C4F8C1EFA15D100A193EC /* ImportadorJSON.swift */,
+				D01D72991F035DC300655FF7 /* ImportadorJSON.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 			files = (
 				D01C4F891EFA11AF00A193EC /* ListaSeries.swift in Sources */,
 				D01C4F851EF9F9ED00A193EC /* TableViewCell.swift in Sources */,
-				D01C4F8D1EFA15D200A193EC /* ImportadorJSON.swift in Sources */,
+				D01D729A1F035DC300655FF7 /* ImportadorJSON.swift in Sources */,
 				D01C4F701EF9EF6400A193EC /* ViewController.swift in Sources */,
 				D01C4F871EFA0A9700A193EC /* Serie.swift in Sources */,
 				D01C4F761EF9EF6500A193EC /* AbouTVGuide.xcdatamodeld in Sources */,
