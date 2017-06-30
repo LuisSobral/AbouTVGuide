@@ -8,6 +8,8 @@
 
 import UIKit
 
+var serie: Serie? = nil
+
 class TableViewController: UITableViewController, UISearchBarDelegate {
     
     private let listaSeries = ListaSeries()
@@ -82,13 +84,13 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         cell.nomeSerie.text = serie.nome
         cell.ratingSerie.text = String(format: "%.1f", serie.rating)
-        
+                
         return cell
     }
     
     func searchBar() {
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-        searchBar.delegate = self
+        searchBar.delegate = self as UISearchBarDelegate
         searchBar.showsScopeBar = true
         searchBar.tintColor = UIColor.lightGray
         self.tableView.tableHeaderView = searchBar
@@ -107,5 +109,15 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         self.tableView.reloadData()
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if seriesFiltradas.series.count == 0 {
+            serie = seriesPrincipais.series[indexPath.row]
+        }
+        else {
+            serie = seriesFiltradas.series[indexPath.row]
+        }
+        
+        performSegue(withIdentifier: "mostrarDetalhe", sender: self)
+    }
 }

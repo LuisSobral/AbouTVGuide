@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0015F511F06060E0081F511 /* SerieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0015F501F06060E0081F511 /* SerieDetailViewController.swift */; };
 		D01C4F6E1EF9EF6400A193EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01C4F6D1EF9EF6400A193EC /* AppDelegate.swift */; };
-		D01C4F701EF9EF6400A193EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01C4F6F1EF9EF6400A193EC /* ViewController.swift */; };
 		D01C4F731EF9EF6400A193EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D01C4F711EF9EF6400A193EC /* Main.storyboard */; };
 		D01C4F761EF9EF6500A193EC /* AbouTVGuide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D01C4F741EF9EF6500A193EC /* AbouTVGuide.xcdatamodeld */; };
 		D01C4F781EF9EF6500A193EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01C4F771EF9EF6500A193EC /* Assets.xcassets */; };
@@ -22,9 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0015F501F06060E0081F511 /* SerieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerieDetailViewController.swift; sourceTree = "<group>"; };
 		D01C4F6A1EF9EF6400A193EC /* AbouTVGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AbouTVGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01C4F6D1EF9EF6400A193EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D01C4F6F1EF9EF6400A193EC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D01C4F721EF9EF6400A193EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D01C4F751EF9EF6500A193EC /* AbouTVGuide.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AbouTVGuide.xcdatamodel; sourceTree = "<group>"; };
 		D01C4F771EF9EF6500A193EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,9 +93,9 @@
 		D01C4F8F1EFA171200A193EC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D01C4F6F1EF9EF6400A193EC /* ViewController.swift */,
 				D01C4F841EF9F9EC00A193EC /* TableViewCell.swift */,
 				D01C4F821EF9F17900A193EC /* TableViewController.swift */,
+				D0015F501F06060E0081F511 /* SerieDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -185,8 +185,8 @@
 				D01C4F891EFA11AF00A193EC /* ListaSeries.swift in Sources */,
 				D01C4F851EF9F9ED00A193EC /* TableViewCell.swift in Sources */,
 				D01D729A1F035DC300655FF7 /* ImportadorJSON.swift in Sources */,
-				D01C4F701EF9EF6400A193EC /* ViewController.swift in Sources */,
 				D01C4F871EFA0A9700A193EC /* Serie.swift in Sources */,
+				D0015F511F06060E0081F511 /* SerieDetailViewController.swift in Sources */,
 				D01C4F761EF9EF6500A193EC /* AbouTVGuide.xcdatamodeld in Sources */,
 				D01C4F921EFA19CA00A193EC /* CarregadorJSON.swift in Sources */,
 				D01C4F6E1EF9EF6400A193EC /* AppDelegate.swift in Sources */,

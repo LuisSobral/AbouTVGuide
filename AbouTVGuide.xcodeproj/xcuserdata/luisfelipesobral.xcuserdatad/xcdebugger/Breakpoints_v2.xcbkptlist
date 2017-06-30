@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AbouTVGuide/TableViewController.swift"
-            timestampString = "520320200.896928"
+            timestampString = "520492733.638395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,13 +90,90 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AbouTVGuide/TableViewController.swift"
-            timestampString = "520320653.978604"
+            timestampString = "520492733.638395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AbouTVGuide/ImportadorJSON.swift"
+            timestampString = "520485921.889843"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AbouTVGuide/ImportadorJSON.swift"
+            timestampString = "520485988.236256"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "importaURLImagem(serie:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AbouTVGuide.ImportadorJSON.(importaImagem in _5AC008AECC0BC56567940CE5F24C38B5) (serie : __ObjC.NSDictionary) -&gt; __ObjC.UIImage"
+                  moduleName = "AbouTVGuide"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luisfelipesobral/Desktop/AbouTVGuide/AbouTVGuide/ImportadorJSON.swift"
+                  timestampString = "520486251.583781"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "73">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AbouTVGuide.ImportadorJSON.((importaImagem in _5AC008AECC0BC56567940CE5F24C38B5) (serie : __ObjC.NSDictionary) -&gt; __ObjC.UIImage).(closure #1)"
+                  moduleName = "AbouTVGuide"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luisfelipesobral/Desktop/AbouTVGuide/AbouTVGuide/ImportadorJSON.swift"
+                  timestampString = "520486251.611015"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AbouTVGuide.ImportadorJSON.((importaImagem in _5AC008AECC0BC56567940CE5F24C38B5) (serie : __ObjC.NSDictionary) -&gt; __ObjC.UIImage).(closure #1).(closure #1)"
+                  moduleName = "AbouTVGuide"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luisfelipesobral/Desktop/AbouTVGuide/AbouTVGuide/ImportadorJSON.swift"
+                  timestampString = "520486251.626362"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
