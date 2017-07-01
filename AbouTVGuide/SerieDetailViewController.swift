@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SerieDetailViewController: UIViewController {
 
@@ -19,7 +20,7 @@ class SerieDetailViewController: UIViewController {
     @IBOutlet weak var descricao: UILabel!
     @IBOutlet weak var generos: UILabel!
     @IBOutlet weak var dias: UILabel!
-    @IBOutlet weak var horario: UILabel!
+    @IBOutlet weak var favorito: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +42,8 @@ class SerieDetailViewController: UIViewController {
         self.status.text  = serie?.status
         self.duracao.text  = String(describing: serie?.tempoDuracao)
         self.canal.text = serie?.canal
-        self.descricao.text = serie?.descricao
-        
+        let descricaoUm = serie?.descricao.replacingOccurrences(of: "<p>", with: "")
+        self.descricao.text = descricaoUm?.replacingOccurrences(of: "</p>", with: "")
         var gen = ""
         
         for genero in (serie?.generos)!
@@ -59,8 +60,35 @@ class SerieDetailViewController: UIViewController {
             days = days + dia + ", "
         }
         
-        dias.text = days
+        dias.text = days + (serie?.horario)!
+    }
+    
+    @IBAction func saveToFavorites(_ sender: UIButton) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        horario.text = serie?.horario
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let newSerie = NSEntityDescription.insertNewObject(forEntityName: "SerieFavorita", into: managedContext)
+        
+        newSerie.setValue(serie!.id, forKey: "id")
+        newSerie.setValue(serie!.nome, forKey: "nome")
+        newSerie.setValue(serie!.imagemURL, forKey: "imagemURL")
+        newSerie.setValue(serie!.rating, forKey: "rating")
+        newSerie.setValue(serie!.status, forKey: "status")
+        newSerie.setValue(serie!.tempoDuracao, forKey: "tempoDuracao")
+        newSerie.setValue(serie!.canal, forKey: "canal")
+        newSerie.setValue(serie!.generos, forKey: "generos")
+        newSerie.setValue(serie!.descricao, forKey: "descricao")
+        newSerie.setValue(serie!.dias, forKey: "dias")
+        newSerie.setValue(serie!.horario, forKey: "horario")
+        
+        do{
+            try managedContext.save()
+            print("SAVED")
+        }
+        catch {
+            //error
+        }
+
     }
 }
