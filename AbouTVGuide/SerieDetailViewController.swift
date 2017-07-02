@@ -46,9 +46,15 @@ class SerieDetailViewController: UIViewController {
         self.descricao.text = descricaoUm?.replacingOccurrences(of: "</p>", with: "")
         var gen = ""
         
+        var cont = 0
+        
         for genero in (serie?.generos)!
         {
-            gen = gen + genero + ", "
+            if cont != (serie?.generos.count)! - 1 {
+                gen = gen + genero + ", "
+            }
+            
+            cont = cont + 1
         }
         
         generos.text = gen

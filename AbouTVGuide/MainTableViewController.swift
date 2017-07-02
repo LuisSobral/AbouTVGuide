@@ -105,6 +105,24 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             self.seriesFiltradas.series = self.listaSeries.series.filter({ (serie) -> Bool in
                 return serie.nome.lowercased().contains(searchText.lowercased())
             })
+            
+            if self.seriesFiltradas.series.count == 0 {
+                CarregadorJSON().carregaBusca(show: searchText) { series in
+                    for serieJSON in series {
+                        if let json = (serieJSON as! NSDictionary).value(forKey: "show") as? NSDictionary {
+                            
+                            let serie = ImportadorJSON().importaSerie(serie: json)
+                        
+                            self.seriesFiltradas.series.append(serie)
+                        
+                            OperationQueue.main.addOperation({
+                                self.tableView.reloadData()
+                            })
+                        }
+                    }
+                
+                }
+            }
         }
         
         self.tableView.reloadData()
