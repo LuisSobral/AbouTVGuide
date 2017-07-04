@@ -43,6 +43,10 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         searchBar()
     }
     
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.dismissKeyboard()
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -129,6 +133,13 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         self.tableView.reloadData()
+    }
+    
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

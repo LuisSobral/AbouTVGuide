@@ -85,7 +85,9 @@ class SerieDetailViewController: UIViewController {
         self.duracao.text  = String(describing: serie?.tempoDuracao)
         self.canal.text = serie?.canal
         let descricaoUm = serie?.descricao.replacingOccurrences(of: "<p>", with: "")
-        self.descricao.text = descricaoUm?.replacingOccurrences(of: "</p>", with: "")
+        let descricaoDois = descricaoUm?.replacingOccurrences(of: "<b>", with: "")
+        let descricaoTres = descricaoDois?.replacingOccurrences(of: "</b>", with: "")
+        self.descricao.text = descricaoTres?.replacingOccurrences(of: "</p>", with: "")
         var gen = ""
         
         var cont = 0
