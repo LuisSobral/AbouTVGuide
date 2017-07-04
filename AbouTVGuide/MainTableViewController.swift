@@ -9,6 +9,7 @@
 import UIKit
 
 var serie: Serie? = nil
+var serieFavoritas = ListaSeries()
 
 class TableViewController: UITableViewController, UISearchBarDelegate {
     
@@ -93,6 +94,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self as UISearchBarDelegate
         searchBar.showsScopeBar = true
         searchBar.tintColor = UIColor.lightGray
+        searchBar.showsCancelButton = true
         self.tableView.tableHeaderView = searchBar
     }
     
@@ -107,7 +109,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             })
             
             if self.seriesFiltradas.series.count == 0 {
-                CarregadorJSON().carregaBusca(show: searchText) { series in
+                let texto = searchText.replacingOccurrences(of: " ", with: "%20")
+                CarregadorJSON().carregaBusca(show: texto) { series in
                     for serieJSON in series {
                         if let json = (serieJSON as! NSDictionary).value(forKey: "show") as? NSDictionary {
                             

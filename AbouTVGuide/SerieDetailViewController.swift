@@ -21,9 +21,51 @@ class SerieDetailViewController: UIViewController {
     @IBOutlet weak var generos: UILabel!
     @IBOutlet weak var dias: UILabel!
     @IBOutlet weak var favorito: UIButton!
+    var serieFavoritas = ListaSeries()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        carregaDados()
+        carregaFavoritos()
+        confereFavorito()
+    }
+    
+    private func confereFavorito() {
+        for favoritoSerie in serieFavoritas.series {
+            if serie?.id == favoritoSerie.id {
+                favorito.isEnabled = false
+            }
+        }
+    }
+    
+    private func carregaFavoritos() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SerieFavorita")
+        
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.fetch(request)
+            
+            if results.count > 0
+            {
+                for result in results {
+                    let serieNova = Serie(id: ((result as AnyObject).value(forKey: "id") as? Int)!, nome: ((result as AnyObject).value(forKey: "nome") as? String)!, generos: ((result as AnyObject).value(forKey: "generos") as? [String])!, status: ((result as AnyObject).value(forKey: "status") as? String)!, tempoDuracao: ((result as AnyObject).value(forKey: "tempoDuracao") as? Int)!, horario: ((result as AnyObject).value(forKey: "horario") as? String)!, dias: ((result as AnyObject).value(forKey: "dias") as? [String])!, rating: ((result as AnyObject).value(forKey: "rating") as? Double)!, canal: ((result as AnyObject).value(forKey: "canal") as? String)!, imagemURL: ((result as AnyObject).value(forKey: "imagemURL") as? String)!, descricao: ((result as AnyObject).value(forKey: "descricao") as? String)!)
+                    
+                    self.serieFavoritas.series.append(serieNova)
+                }
+            }
+        }
+        catch {
+            
+        }
+    }
+    
+    private func carregaDados() {
         
         if let imagem = NSURL(string: (serie!.imagemURL)) {
             DispatchQueue.global().async {
@@ -54,6 +96,10 @@ class SerieDetailViewController: UIViewController {
                 gen = gen + genero + ", "
             }
             
+            else {
+                gen = gen + genero
+            }
+            
             cont = cont + 1
         }
         
@@ -67,6 +113,7 @@ class SerieDetailViewController: UIViewController {
         }
         
         dias.text = days + (serie?.horario)!
+        
     }
     
     @IBAction func saveToFavorites(_ sender: UIButton) {
@@ -90,7 +137,7 @@ class SerieDetailViewController: UIViewController {
         
         do{
             try managedContext.save()
-            print("SAVED")
+            favorito.isEnabled = false
         }
         catch {
             //error

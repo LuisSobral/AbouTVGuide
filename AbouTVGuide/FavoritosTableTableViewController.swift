@@ -11,7 +11,7 @@ import CoreData
 
 
 class FavoritosTableTableViewController: UITableViewController {
-
+    
     var serieFavoritas = ListaSeries()
     
     override func viewDidLoad() {
@@ -79,49 +79,45 @@ class FavoritosTableTableViewController: UITableViewController {
     }
  
 
-    /*
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SerieFavorita")
+            
+            request.returnsObjectsAsFaults = false
+            
+            do {
+                let results = try context.fetch(request)
+                
+                if results.count > 0
+                {
+                    for result in results {
+                        let identificador = ((result as AnyObject).value(forKey: "id") as? Int)!
+                        
+                        if identificador == serieFavoritas.series[indexPath.row].id {
+                            context.delete(result as! NSManagedObject)
+                            serieFavoritas.series.remove(at: indexPath.row)
+                            
+                            OperationQueue.main.addOperation({
+                                self.tableView.reloadData()
+                            })
+                            
+                            return
+                        }
+                    }
+                }
+            }
+            
+            catch {
+                
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
