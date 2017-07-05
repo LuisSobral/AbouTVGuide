@@ -68,7 +68,7 @@ class SerieDetailViewController: UIViewController {
     private func carregaDados() {
         
         if let imagem = NSURL(string: (serie!.imagemURL)) {
-            DispatchQueue.global().async {
+            DispatchQueue.global(qos: .userInitiated).async {
                 let data = try? Data(contentsOf: imagem as URL)
                 
                 if data != nil {

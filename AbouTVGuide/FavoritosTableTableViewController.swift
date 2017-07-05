@@ -55,7 +55,7 @@ class FavoritosTableTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
         if let imagem = NSURL(string: serieFavoritas.series[indexPath.row].imagemURL) {
-            DispatchQueue.global().async {
+            DispatchQueue.global(qos: .userInitiated).async {
                 let data = try? Data(contentsOf: imagem as URL)
                 
                 if data != nil {

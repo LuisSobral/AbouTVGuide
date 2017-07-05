@@ -41,10 +41,11 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         searchBar()
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.dismissKeyboard()
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(tap)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,20 +64,20 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var serie: Serie
+        var serieCelula: Serie
         
         if seriesFiltradas.series.count == 0 {
-            serie = seriesPrincipais.series[indexPath.row]
+            serieCelula = seriesPrincipais.series[indexPath.row]
         }
         
         else {
-            serie = seriesFiltradas.series[indexPath.row]
+            serieCelula = seriesFiltradas.series[indexPath.row]
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-        if let imagem = NSURL(string: serie.imagemURL) {
-            DispatchQueue.global().async {
+        if let imagem = NSURL(string: serieCelula.imagemURL) {
+            DispatchQueue.global(qos: .userInitiated).async {
                 let data = try? Data(contentsOf: imagem as URL)
                 
                 if data != nil {
@@ -87,8 +88,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         
-        cell.nomeSerie.text = serie.nome
-        cell.ratingSerie.text = String(format: "%.1f", serie.rating)
+        cell.nomeSerie.text = serieCelula.nome
+        cell.ratingSerie.text = String(format: "%.1f", serieCelula.rating)
                 
         return cell
     }
@@ -98,48 +99,62 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self as UISearchBarDelegate
         searchBar.showsScopeBar = true
         searchBar.tintColor = UIColor.lightGray
-        searchBar.showsCancelButton = true
         self.tableView.tableHeaderView = searchBar
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             self.seriesFiltradas.series = []
+            self.tableView.reloadData()
         }
         
         else {
-            self.seriesFiltradas.series = self.listaSeries.series.filter({ (serie) -> Bool in
-                return serie.nome.lowercased().contains(searchText.lowercased())
-            })
+            let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -/:;()$&@.,?!'")
             
-            if self.seriesFiltradas.series.count == 0 {
-                let texto = searchText.replacingOccurrences(of: " ", with: "%20")
-                CarregadorJSON().carregaBusca(show: texto) { series in
-                    for serieJSON in series {
-                        if let json = (serieJSON as! NSDictionary).value(forKey: "show") as? NSDictionary {
+            if searchText.rangeOfCharacter(from: characterset.inverted) != nil {
+                let alert = UIAlertController(title: "Desculpe", message: "Nao somos o twitter e nao trabalhamos com emojis ou bandeiras :(", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Fechar", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                self.seriesFiltradas.series = []
+                self.tableView.reloadData()
+            }
+            
+            else {
+                self.seriesFiltradas.series = self.listaSeries.series.filter({ (serie) -> Bool in
+                    return serie.nome.lowercased().contains(searchText.lowercased())
+                })
+            
+                if self.seriesFiltradas.series.count == 0 {
+                    let texto = searchText.replacingOccurrences(of: " ", with: "%20")
+                    CarregadorJSON().carregaBusca(show: texto) { series in
+                        for serieJSON in series {
+                            if let json = (serieJSON as! NSDictionary).value(forKey: "show") as? NSDictionary {
                             
-                            let serie = ImportadorJSON().importaSerie(serie: json)
+                                let serie = ImportadorJSON().importaSerie(serie: json)
                         
-                            self.seriesFiltradas.series.append(serie)
+                                self.seriesFiltradas.series.append(serie)
                         
-                            OperationQueue.main.addOperation({
-                                self.tableView.reloadData()
-                            })
+                                OperationQueue.main.addOperation({
+                                    self.tableView.reloadData()
+                                })
+                            }
                         }
-                    }
                 
+                    }
+                }
+                
+                else {
+                    self.tableView.reloadData()
                 }
             }
         }
-        
-        self.tableView.reloadData()
     }
     
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
+        tableView.endEditing(true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
